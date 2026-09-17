@@ -66,10 +66,22 @@ public class ClienteService {
     }
 
     /** Elimina un cliente. Si el id no existe, no hace nada. */
-    public void eliminar(Long id) {
-        if (clienteRepository.existsById(id)) {
-            clienteRepository.deleteById(id);
+    public boolean eliminar(Long id) {
+        if (!clienteRepository.existsById(id)) {
+            return false;
         }
+        clienteRepository.deleteById((id));
+        return true;
+    }
+
+    public boolean desactivar(Long id){
+        Cliente cliente = buscarPorId(id);
+        if (cliente == null) {
+            return false;
+        }
+        cliente.setActivo(false);
+        clienteRepository.save(cliente);
+        return true;
     }
 
     /**

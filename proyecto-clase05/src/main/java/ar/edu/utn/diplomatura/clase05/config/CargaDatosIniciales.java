@@ -39,6 +39,10 @@ public class CargaDatosIniciales implements CommandLineRunner {
                 new Cliente("Diego", "Gomez", "20221098765", "diego.gomez@mail.com", 1250000.00),
                 new Cliente("Elena", "Suarez", "23412233445", "elena.suarez@mail.com", 76500.75)));
 
+        Cliente inactivo = new Cliente("Federico", "Luna", "2033445566", "federico.luna@mail.com", 500.0);
+        inactivo.setActivo(false);
+        clienteRepository.save(inactivo);
+
         System.out.println("=== " + clienteRepository.count() + " clientes cargados en H2 ===");
     }
 }

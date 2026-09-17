@@ -32,6 +32,8 @@ public class Cliente {
 
     private double saldo;
 
+    private boolean activo = true;
+
     /** Constructor vacio: JPA lo necesita para reconstruir el objeto. */
     public Cliente() {
     }
@@ -92,5 +94,13 @@ public class Cliente {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }
