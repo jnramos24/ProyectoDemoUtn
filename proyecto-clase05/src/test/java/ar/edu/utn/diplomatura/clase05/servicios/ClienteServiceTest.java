@@ -60,10 +60,11 @@ class ClienteServiceTest {
         when(dummyClienteRepository.findById(999L)).thenReturn(Optional.empty());
 
         // when
-        Cliente resultado = clientService.buscarPorId(999L);
+        Optional<Cliente> resultado = clientService.buscarPorId(999L);
 
         //then
-        assertNull(resultado);
+        assertTrue(resultado.isEmpty());
+        assertNotNull(resultado);
         verify(dummyClienteRepository).findById(999L);
 
     }

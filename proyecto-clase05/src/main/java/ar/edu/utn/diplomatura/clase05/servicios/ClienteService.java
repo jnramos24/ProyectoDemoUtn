@@ -1,6 +1,7 @@
 package ar.edu.utn.diplomatura.clase05.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -33,8 +34,8 @@ public class ClienteService {
     }
 
     /** Devuelve el cliente, o null si ese id no existe. */
-    public Cliente buscarPorId(Long id) {
-        return clienteRepository.findById(id).orElse(null);
+    public Optional<Cliente> buscarPorId(Long id) {
+        return clienteRepository.findById(id);
     }
 
     public List<Cliente> buscarPorApellido(String apellido) {
@@ -52,7 +53,7 @@ public class ClienteService {
 
     /** Actualiza nombre, apellido y email. Devuelve null si el id no existe. */
     public Cliente actualizar(Long id, Cliente datosNuevos) {
-        Cliente existente = buscarPorId(id);
+        Cliente existente = buscarPorId(id).orElse(null);
         if (existente == null) {
             return null;
         }
@@ -75,7 +76,7 @@ public class ClienteService {
     }
 
     public boolean desactivar(Long id){
-        Cliente cliente = buscarPorId(id);
+        Cliente cliente = buscarPorId(id).orElse(null);
         if (cliente == null) {
             return false;
         }
@@ -89,7 +90,7 @@ public class ClienteService {
      * Devuelve null si el cliente no existe o si el importe no es positivo.
      */
     public Cliente acreditar(Long id, double importe) {
-        Cliente cliente = buscarPorId(id);
+        Cliente cliente = buscarPorId(id).orElse(null);
         if (cliente == null || importe <= 0) {
             return null;
         }

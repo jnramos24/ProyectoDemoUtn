@@ -1,6 +1,7 @@
 package ar.edu.utn.diplomatura.clase05.controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,11 +48,11 @@ public class ClienteController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-        Cliente cliente = clienteService.buscarPorId(id);
-         if(cliente == null){
-             return ResponseEntity.notFound().build();
+        Optional<Cliente> encontrado = clienteService.buscarPorId(id);
+         if(encontrado.isEmpty()){
+             return ResponseEntity.notFound().build(); // 404
          }
-         return ResponseEntity.ok(cliente);
+         return ResponseEntity.ok(encontrado.get());
         }
 
     /**
