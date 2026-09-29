@@ -3,6 +3,10 @@ package ar.edu.utn.diplomatura.clase05.controladores;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,7 @@ import ar.edu.utn.diplomatura.clase05.servicios.ClienteService;
  */
 @RestController
 @RequestMapping("/clientes")
+@Tag(name = "Clientes", description = "Alta, baja, consulta y acreditaciones de clientes del banco")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -33,8 +38,13 @@ public class ClienteController {
      *
      * @RequestParam es lo que va despues del "?" en la URL.
      */
+    @Operation(summary = "Lista todos los clientes",
+            description = "Devuelve la lista completa. Con el parametro 'apellido' filtra por "
+                    + "coincidencia parcial, sin distinguir mayusculas.")
+    @ApiResponse(responseCode = "200", description = "Lista de clientes (puede venir vacia)")
     @GetMapping
-    public List<Cliente> listar(@RequestParam(required = false) String apellido) {
+    public List<Cliente> listar(@Parameter(description = "Parte del apellido a buscar", example = "gomez")
+                                    @RequestParam(required = false) String apellido) {
         if (apellido == null || apellido.isBlank()) {
             return clienteService.listarTodos();
         }
