@@ -43,6 +43,6 @@ public class CargaDatosIniciales implements CommandLineRunner {
         inactivo.setActivo(false);
         clienteRepository.save(inactivo);
 
-        System.out.println("=== " + clienteRepository.count() + " clientes cargados en H2 ===");
+        System.out.println("=== " + clienteRepository.count() + " clientes cargados en MySql ===");
     }
 }

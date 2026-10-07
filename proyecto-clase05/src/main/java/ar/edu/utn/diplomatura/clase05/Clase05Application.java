@@ -27,8 +27,7 @@ public class Clase05Application {
         System.out.println("===========================================================");
         System.out.println("  Clase 05 - API REST de clientes");
         System.out.println("  App:         http://localhost:8080/clientes");
-        System.out.println("  Consola H2:  http://localhost:8080/h2-console");
-        System.out.println("               JDBC URL: jdbc:h2:mem:clase05   user: sa");
+        System.out.println("               JDBC URL: jdbc:mysql://localhost:3306/proyecto_clase05   user: root");
         System.out.println("===========================================================");
         System.out.println();
 

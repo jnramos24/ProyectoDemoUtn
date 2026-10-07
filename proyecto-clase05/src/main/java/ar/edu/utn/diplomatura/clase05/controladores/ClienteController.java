@@ -3,6 +3,7 @@ package ar.edu.utn.diplomatura.clase05.controladores;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.utn.diplomatura.clase05.excepciones.ClienteNoEncontradoException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -58,12 +59,13 @@ public class ClienteController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-        Optional<Cliente> encontrado = clienteService.buscarPorId(id);
-         if(encontrado.isEmpty()){
-             return ResponseEntity.notFound().build(); // 404
-         }
-         return ResponseEntity.ok(encontrado.get());
+        try {
+            return ResponseEntity.ok(clienteService.obtenerOFallar(id)); //200
+        } catch (ClienteNoEncontradoException e){
+            System.out.println("Get/clientes/"+ id + " " + e.getMessage());
+            return ResponseEntity.notFound().build();
         }
+    }
 
     /**
      * POST /clientes

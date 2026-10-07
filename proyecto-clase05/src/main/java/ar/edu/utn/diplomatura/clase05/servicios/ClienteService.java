@@ -3,6 +3,7 @@ package ar.edu.utn.diplomatura.clase05.servicios;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.utn.diplomatura.clase05.excepciones.ClienteNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import ar.edu.utn.diplomatura.clase05.componentes.ValidadorDeCuit;
@@ -36,6 +37,11 @@ public class ClienteService {
     /** Devuelve el cliente, o null si ese id no existe. */
     public Optional<Cliente> buscarPorId(Long id) {
         return clienteRepository.findById(id);
+    }
+
+    public Cliente obtenerOFallar(Long id){
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new ClienteNoEncontradoException(id));
     }
 
     public List<Cliente> buscarPorApellido(String apellido) {
