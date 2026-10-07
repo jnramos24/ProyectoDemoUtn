@@ -6,7 +6,7 @@ spring:
     url: "jdbc:mysql://localhost:3306/proyecto_clase05?createDatabaseIfNotExist=true"
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: "root"
+    password: "aca va tu password"
 
     #h2:
       #console:
