@@ -254,12 +254,3 @@ parte de la API.
 
 ---
 
-## Datos de la aplicación
-
-| Ítem | Valor |
-|------|-------|
-| Java | 21 |
-| Spring Boot | 3.5.5 |
-| Build | Maven |
-| Base de datos | H2 en memoria |
-| Puerto | 8080 |
