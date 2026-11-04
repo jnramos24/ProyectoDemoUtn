@@ -1,6 +1,7 @@
 package ar.edu.utn.diplomatura.clase05.repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // Spring arma el SQL leyendo el nombre del metodo:
     // SELECT * FROM clientes WHERE UPPER(apellido) LIKE UPPER('%?%')
     List<Cliente> findByApellidoContainingIgnoreCase(String apellido);
+
+    Optional<Cliente> findByCuit(String cuit);
 }
