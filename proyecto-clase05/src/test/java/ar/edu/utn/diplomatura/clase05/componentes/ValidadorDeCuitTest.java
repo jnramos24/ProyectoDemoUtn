@@ -58,7 +58,7 @@ class ValidadorDeCuitTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"2012345678", "HZ-1234567-B", "  2730123456  ", "27-3541122-3"})
+    @ValueSource(strings = {"2012345678", "20-1234567-8", "  2730123456  ", "27-3541122-3"})
     void variosFormatosDeCuit(String cuit){
         assertTrue(validador.esValido(cuit),"Debería ser válido"+ cuit);
     }
