@@ -254,3 +254,6 @@ parte de la API.
 
 ---
 
+## Como correrlo
+
+Primero config-server (8888) y eureka server (8761)
